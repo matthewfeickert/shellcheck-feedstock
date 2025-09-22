@@ -1,6 +1,5 @@
 {% set name = "shellcheck" %}
 {% set version = "0.11.0" %}
-{% set native = 'm2w64-' if win else '' %}
 
 package:
   name: {{ name|lower }}
@@ -23,8 +22,10 @@ build:
 requirements:
   build:
     - stack                     # [not linux]
-    - {{ native }}binutils      # [linux or win]
-    - llvm-tools 13.*           # [osx]
+    - binutils_{{ target_platform }}   # [linux or win]
+    - llvm-tools 13.*                  # [osx]
+    - cctools_{{ target_platform }}    # [osx]
+
 
   host:
     - gmp  # [osx]
