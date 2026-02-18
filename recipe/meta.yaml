@@ -23,7 +23,8 @@ build:
 requirements:
   build:
     - stack                     # [not linux]
-    - {{ native }}binutils
+    - {{ native }}binutils      # [linux or win]
+    - llvm-tools 13.*           # [osx]
 
   host:
     - gmp  # [osx]
